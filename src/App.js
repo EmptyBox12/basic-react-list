@@ -43,6 +43,7 @@ class App extends React.Component {
           return true;
         }
       }),
+      showEdit: false,
     });
   }
   clickEdit(e) {
@@ -61,26 +62,32 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className ="content">
-        <form className="submitForm" onSubmit={this.submit}>
-          <input
-            onChange={this.handleChange}
-            className ="input"
-            value={this.state.task.text}
-            type="text"
-          ></input>
-          <button type="submit" className= "submitButton">Submit</button>
-        </form>
-        <Overview
-          tasks={this.state.tasks}
-          deletion={this.clickDelete}
-          clickEdit={this.clickEdit}
-        />
-        {this.state.showEdit ? (
-          <Edit submit={this.submitEdit} handleChange={this.handleChange} />
-        ) : (
-          ""
-        )}
+      <div className= "container">
+        <div className="content">
+          <h1>To-Do List</h1>
+          <form className="submitForm" onSubmit={this.submit}>
+            <input
+              onChange={this.handleChange}
+              className="input"
+              value={this.state.task.text}
+              type="text"
+            ></input>
+            <button type="submit" className="submitButton">
+              Submit
+            </button>
+          </form>
+          <Overview
+            tasks={this.state.tasks}
+            deletion={this.clickDelete}
+            clickEdit={this.clickEdit}
+          />
+          {this.state.showEdit ? (
+            <Edit submit={this.submitEdit} handleChange={this.handleChange} />
+          ) : (
+            ""
+          )}
+        </div>
+        <p className="footNote">Created by Ataberk Tümay</p>
       </div>
     );
   }

@@ -1,6 +1,25 @@
 .list{
   list-style: none;
+  align-self: flex-start;
 }
 .listElement{
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 20px;
+}
+.buttonContainer{
+  display: flex;
+  gap: 5px;
   margin-top: 5px;
+}
+.buttonContainer button{
+  color: #333;
+  background-color: white;
+  font-size: 15px;
+}
+.buttonContainer button:hover{
+  filter: brightness(0.9);
+}
+.buttonContainer button:active{
+  filter: brightness(0.8);
 }

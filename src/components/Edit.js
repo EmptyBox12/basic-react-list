@@ -1,5 +1,7 @@
 /* eslint-disable no-useless-constructor */
 import React from "react";
+import "../css/Edit.css";
+
 
 export class Edit extends React.Component{
   constructor(props){
@@ -8,10 +10,10 @@ export class Edit extends React.Component{
   render(){
     const {submit , handleChange} = this.props;
     return (
-      <div>
+      <div className = "editForm" >
         <form onSubmit = {submit}>
-          <input type="text" onChange = {handleChange} />
-          <button type="submit">Click Me</button>
+          <input className="input" type="text" onChange = {handleChange} />
+          <button className="submitButton" type="submit">Submit Edit</button>
         </form>
       </div>
     );

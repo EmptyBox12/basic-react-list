@@ -7,18 +7,24 @@ export class Overview extends React.Component {
     super(props);
   }
   render() {
-    const { tasks , deletion, clickEdit} = this.props;
+    const { tasks, deletion, clickEdit } = this.props;
 
     return (
-      <ul className = "list">
+      <ul className="list">
         {tasks.map((task, index) => {
           return (
-            <div key = {task.id}>
-              <li className = "listElement">
+            <div key={task.id}>
+              <li className="listElement">
                 {index + 1}. {task.text}
               </li>
-              <button onClick = {deletion} id={index}>Delete</button>
-              <button onClick = {clickEdit} id={index} >Edit</button>
+              <div className= "buttonContainer">
+                <button onClick={deletion} id={index}>
+                  Delete
+                </button>
+                <button onClick={clickEdit} id={index}>
+                  Edit
+                </button>
+              </div>
             </div>
           );
         })}
