@@ -1,25 +1,88 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import uniqid from "uniqid";
+import { Overview } from "./components/Overview";
+import { Edit } from "./components/Edit";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super();
+    this.submit = this.submit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.clickDelete = this.clickDelete.bind(this);
+    this.clickEdit = this.clickEdit.bind(this);
+    this.submitEdit = this.submitEdit.bind(this);
+    this.state = {
+      tasks: [],
+      task: { text: "", id: uniqid() },
+      taskIndex: 0,
+      showEdit: false,
+    };
+  }
+  submit(e) {
+    e.preventDefault();
+    this.setState({
+      tasks: this.state.tasks.concat(this.state.task),
+      task: { text: "", id: uniqid() },
+    });
+  }
+  handleChange(e) {
+    this.setState({
+      task: {
+        text: e.target.value,
+        id: this.state.task.id,
+      },
+    });
+  }
+  clickDelete(e) {
+    this.setState({
+      tasks: this.state.tasks.filter((item, index) => {
+        if (index === parseInt(e.target.id)) {
+          return false;
+        } else {
+          return true;
+        }
+      }),
+    });
+  }
+  clickEdit(e) {
+    this.setState({
+      showEdit: true,
+      taskIndex: e.target.id,
+    });
+  }
+  submitEdit(e) {
+    e.preventDefault();
+    let index = parseInt(this.state.taskIndex);
+    let tasks = [...this.state.tasks];
+    tasks[index].text = this.state.task.text;
+    this.setState({ tasks, showEdit: false, task: { text: "" } });
+  }
+
+  render() {
+    return (
+      <div>
+        <form onSubmit={this.submit}>
+          <input
+            onChange={this.handleChange}
+            value={this.state.task.text}
+            type="text"
+          ></input>
+          <button type="submit">Submit</button>
+        </form>
+        <Overview
+          tasks={this.state.tasks}
+          deletion={this.clickDelete}
+          clickEdit={this.clickEdit}
+        />
+        {this.state.showEdit ? (
+          <Edit submit={this.submitEdit} handleChange={this.handleChange} />
+        ) : (
+          ""
+        )}
+      </div>
+    );
+  }
 }
 
 export default App;
