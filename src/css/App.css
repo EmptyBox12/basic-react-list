@@ -1,0 +1,33 @@
+body{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height:100vh;
+}
+
+.content{
+  display: flex;
+  background-color: snow;
+  flex-direction: column;
+  border: 5px solid silver;
+  border-radius: 10px;
+  padding: 20px;
+  height: 70vh;
+  width: 30vw;
+  overflow: auto;
+}
+.submitForm{
+  width:100%;
+  display: flex;
+}
+.submitButton{
+  background-color: skyblue;
+  height: 25px;
+  color: #333;
+  flex: 1;
+}
+.input{
+  flex:3;
+  font-weight: bold;
+}

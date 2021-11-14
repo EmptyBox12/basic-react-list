@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import "./css/App.css";
 import uniqid from "uniqid";
 import { Overview } from "./components/Overview";
 import { Edit } from "./components/Edit";
@@ -61,14 +61,15 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.submit}>
+      <div className ="content">
+        <form className="submitForm" onSubmit={this.submit}>
           <input
             onChange={this.handleChange}
+            className ="input"
             value={this.state.task.text}
             type="text"
           ></input>
-          <button type="submit">Submit</button>
+          <button type="submit" className= "submitButton">Submit</button>
         </form>
         <Overview
           tasks={this.state.tasks}

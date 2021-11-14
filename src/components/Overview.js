@@ -1,5 +1,6 @@
 /* eslint-disable no-useless-constructor */
 import React from "react";
+import "../css/Overview.css";
 
 export class Overview extends React.Component {
   constructor(props) {
@@ -9,11 +10,11 @@ export class Overview extends React.Component {
     const { tasks , deletion, clickEdit} = this.props;
 
     return (
-      <ul>
+      <ul className = "list">
         {tasks.map((task, index) => {
           return (
             <div key = {task.id}>
-              <li>
+              <li className = "listElement">
                 {index + 1}. {task.text}
               </li>
               <button onClick = {deletion} id={index}>Delete</button>
